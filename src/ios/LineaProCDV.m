@@ -131,13 +131,21 @@
 }
 
 - (void) magneticCardData: (NSString *) track1 track2:(NSString *) track2 track3:(NSString *) track3 {
-    NSLog(@"magneticCardData: track1 - %@, track2 - %@, track3 - %@", track1, track2, track3);
     NSDictionary *card = [dtdev msProcessFinancialCard:track1 track2:track2];
     if(card && [card objectForKey:@"accountNumber"]!=nil && [[card objectForKey:@"expirationYear"] intValue]!=0)
     {
-        NSLog(@"magneticCardData (full info): accountNumber - %@, cardholderName - %@, expirationYear - %@, expirationMonth - %@, serviceCode - %@, discretionaryData - %@, firstName - %@, lastName - %@", [card objectForKey:@"accountNumber"], [card objectForKey:@"cardholderName"], [card objectForKey:@"expirationYear"], [card objectForKey:@"expirationMonth"], [card objectForKey:@"serviceCode"], [card objectForKey:@"discretionaryData"], [card objectForKey:@"firstName"], [card objectForKey:@"lastName"]);
+        NSString* cardName = [NSString stringWithFormat:@"%@ %@",[card valueForKey:@"firstName"],[card valueForKey:@"lastName"]];
+        NSString* cardNumber = [card valueForKey:@"accountNumber"];
+        NSString* cardExpDate = [NSString stringWithFormat:@"%@/%@",[card valueForKey:@"expirationMonth"],[card valueForKey:@"expirationYear"]];
+
+        int sound[]={2730,150,0,30,2730,150};
+        [dtdev playSound:100 beepData:sound length:sizeof(sound) error:nil];
+
+        NSArray* args = [NSArray arrayWithObjects:cardName, cardNumber, cardExpDate, nil];
+        NSString* string = [args componentsJoinedByString:@","];
+        NSString* retStr = [NSString stringWithFormat:@"LineaProCDV.onMagneticCardData('%@')",string];
     }
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onMagneticCardData('%@', '%@', '%@');", track1, track2, track3];
+
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
