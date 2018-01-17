@@ -144,12 +144,12 @@
         NSArray* args = [NSArray arrayWithObjects:cardName, cardNumber, cardExpDate, nil];
         NSString* string = [args componentsJoinedByString:@","];
         NSString* retStr = [NSString stringWithFormat:@"LineaProCDV.onMagneticCardData('%@')",string];
-    }
 
-    if ([self.webView isKindOfClass:[UIWebView class]]) {
-        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
-    } else if([self.webView isKindOfClass:[WKWebView class]]) {
-        [(WKWebView*)self.webView evaluateJavaScript:retStr completionHandler:nil];
+        if ([self.webView isKindOfClass:[UIWebView class]]) {
+            [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
+        } else if([self.webView isKindOfClass:[WKWebView class]]) {
+            [(WKWebView*)self.webView evaluateJavaScript:retStr completionHandler:nil];
+        }
     }
 }
 
