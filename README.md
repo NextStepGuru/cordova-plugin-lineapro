@@ -5,15 +5,6 @@ hirsch88-plugin-lineapro
 To start plugin need to execute 'LineaProCDV.initDT()' method.
 Recommended to add this into 'deviceready' handler.
 
-###
-!!! You must add section "SupportedExternalAccessoryProtocols" into "[Project Name].plist" file.
-This section should include the following items:
-
-* com.datecs.linea.pro.msr
-* com.datecs.iserial.communication
-* com.datecs.pinpad
-* com.datecs.linea.pro.bar
-
 ### Sample cordova project
 The sample project which is using this plugin available here https://github.com/ttatarinov/lineapro-phonegap-plugin-example
 

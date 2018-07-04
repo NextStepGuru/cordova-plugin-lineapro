@@ -1,26 +1,26 @@
 {
-  "name": "hirsch88-plugin-lineapro",
-  "version": "1.2.0",
+  "name": "cordova-plugin-lineapro",
+  "version": "1.3.0",
   "description": "LineaPro Cordova Plugin",
   "cordova": {
-    "id": "hirsch88-plugin-lineapro",
+    "id": "nextstepguru-cordova-plugin-lineapro",
     "platforms": [
       "ios"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://hirsch88@github.com/hirsch88/hirsch88-plugin-lineapro.git"
+    "url": "git+https://NextStepGuru@github.com/NextStepGuru/cordova-plugin-lineapro.git"
   },
   "keywords": [
     "lineapro",
     "ecosystem:cordova",
     "cordova-ios"
   ],
-  "author": "Gery Hirschfeld <https://github.com/hirsch88>",
+  "author": "Jeremy R DeYoung <https://github.com/NextStepGuru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hirsch88/hirsch88-plugin-lineapro/issues"
+    "url": "https://github.com/NextStepGuru/cordova-plugin-lineapro/issues"
   },
-  "homepage": "https://github.com/hirsch88/hirsch88-plugin-lineapro#readme"
+  "homepage": "https://github.com/NextStepGuru/cordova-plugin-lineapro"
 }
