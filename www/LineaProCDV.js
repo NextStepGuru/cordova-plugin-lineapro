@@ -35,7 +35,7 @@ LineaProCDV.prototype.connectionChanged = function(state) {
 
 LineaProCDV.prototype.onMagneticCardData = function(trackData) {
   var tracks = trackData.split(',')
-  this.cardDataCallback({track1: tracks[0], track2: tracks[2], track3: tracks[3]});
+  this.cardDataCallback({track1: tracks[0], track2: tracks[1], track3: tracks[2]});
 };
 
 LineaProCDV.prototype.onBarcodeData = function(barcodeScanArr) {
