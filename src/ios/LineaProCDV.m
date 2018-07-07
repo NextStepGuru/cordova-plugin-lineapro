@@ -132,8 +132,12 @@
 
 - (void) magneticCardData: (NSString *) track1 track2:(NSString *) track2 track3:(NSString *) track3 {
     NSDictionary *card = [dtdev msProcessFinancialCard:track1 track2:track2];
+
+    NSLog(@"magneticCardData: Track1: %d, Track2: %d, Track3: %d", track1, track2, track3);
+
     if(card && [card objectForKey:@"accountNumber"]!=nil && [[card objectForKey:@"expirationYear"] intValue]!=0)
     {
+
         NSString* cardName = [NSString stringWithFormat:@"%@ %@",[card valueForKey:@"firstName"],[card valueForKey:@"lastName"]];
         NSString* cardNumber = [card valueForKey:@"accountNumber"];
         NSString* cardExpDate = [NSString stringWithFormat:@"%@/%@",[card valueForKey:@"expirationMonth"],[card valueForKey:@"expirationYear"]];
