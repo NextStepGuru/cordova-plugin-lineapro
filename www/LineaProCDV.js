@@ -41,4 +41,34 @@ LineaProCDV.prototype.onBarcodeData = function(jsonStringData) {
   this.barcodeCallback(JSON.parse(jsonStringData));
 };
 
+/*
+  getters
+    getAutoOffWhenIdle
+    getBatteryCapacity
+    getBatteryInfo
+    getConnectedDeviceBatteryInfo
+    getConnectedDeviceInfo
+    getKioskMode
+    getCharging
+    getPassThroughSync
+    getUSBChargeCurrent
+    getSupportedFeature
+    getTimeRemainingToPowerOff
+ */
+LineaProCDV.prototype.getData = function (dataType, callbackFunction = null) {
+  exec(callbackFunction, this.errorCallback, "LineaProCDV", 'get' + dataType, []);
+};
+
+/*
+  setters
+    setAutoOffWhenIdle
+    setKioskMode
+    setCharging
+    setPassThroughSync
+    setUSBChargeCurrent
+ */
+LineaProCDV.prototype.setData = function (dataType, dataArguments, callbackFunction = null) {
+  exec(callbackFunction, this.errorCallback, "LineaProCDV", 'set' + dataType, dataArguments);
+};
+
 module.exports = new LineaProCDV();

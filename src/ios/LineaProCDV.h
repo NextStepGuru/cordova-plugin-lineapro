@@ -22,4 +22,16 @@
 - (void)startBarcode:(CDVInvokedUrlCommand*)command;
 - (void)stopBarcode:(CDVInvokedUrlCommand*)command;
 
+- (void)getAutoOffWhenIdle:(CDVInvokedUrlCommand*)command;
+- (void)getBatteryCapacity:(CDVInvokedUrlCommand*)command;
+- (void)getBatteryInfo:(CDVInvokedUrlCommand*)command;
+- (void)getConnectedDeviceBatteryInfo:(CDVInvokedUrlCommand*)command;
+- (void)getConnectedDeviceInfo:(CDVInvokedUrlCommand*)command;
+- (void)getKioskMode:(CDVInvokedUrlCommand*)command;
+- (void)getCharging:(CDVInvokedUrlCommand*)command;
+- (void)getPassThroughSync:(CDVInvokedUrlCommand*)command;
+- (void)getUSBChargeCurrent:(CDVInvokedUrlCommand*)command;
+- (void)getSupportedFeature:(CDVInvokedUrlCommand*)command;
+- (void)getTimeRemainingToPowerOff:(CDVInvokedUrlCommand*)command;
+
 @end
