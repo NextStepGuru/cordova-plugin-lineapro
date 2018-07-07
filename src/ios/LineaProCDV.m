@@ -32,7 +32,7 @@
     int percent;
     float voltage;
 
-	if([dtdev getBatteryCapacity:&percent voltage:&voltage error:nil])
+    if([dtdev getBatteryCapacity:&percent voltage:&voltage error:nil])
     {
         NSString *status = [NSString stringWithFormat:@"Bat: %.2fv, %d%%",voltage,percent];
 
@@ -97,7 +97,20 @@
 
 -(void) getKioskMode:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getKioskMode: %@", command);
+    bool isKioskMode = false;
+    [dtdev getKioskMode:&isKioskMode error:nil];
+    NSLog(@"getKioskMode: %@, %d", command.callbackId, (int)isKioskMode);
+    NSString* retStr = [NSString stringWithFormat:@"{\"isKioskMode\": \"%d\"}", (int)isKioskMode];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+-(void) setKioskMode:(CDVInvokedUrlCommand*)command
+{
+    bool isKioskMode = command.arguments[0] ? true : false;
+    NSError* err;
+    [dtdev setKioskMode:isKioskMode error:&err];
+    NSLog(@"setKioskMode: %d, %@", (int)isKioskMode, err);
 }
 
 -(void) getCharging:(CDVInvokedUrlCommand*)command
@@ -112,9 +125,10 @@
 }
 -(void) setCharging:(CDVInvokedUrlCommand*)command
 {
+    bool isCharging = command.arguments[0] ? true : false;
     NSError* err;
-    [dtdev setCharging:TRUE error:&err];
-    NSLog(@"setCharging: %@, %@", command.arguments[0], err);
+    [dtdev setCharging:isCharging error:&err];
+    NSLog(@"setCharging: %d, %@", (int)isCharging, err);
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command
@@ -148,7 +162,7 @@
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
         [(WKWebView*)self.webView evaluateJavaScript:jsStatement completionHandler:nil];
     }
-	[self.viewController dismissViewControllerAnimated:YES completion:nil];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 
 }
 
@@ -189,15 +203,15 @@
     NSLog(@"connectionState: %d", state);
 
     switch (state) {
-		case CONN_DISCONNECTED:
-		case CONN_CONNECTING:
+        case CONN_DISCONNECTED:
+        case CONN_CONNECTING:
                 break;
-		case CONN_CONNECTED:
-		{
-			NSLog(@"PPad connected!\nSDK version: %d.%d\nHardware revision: %@\nFirmware revision: %@\nSerial number: %@", dtdev.sdkVersion/100,dtdev.sdkVersion%100,dtdev.hardwareRevision,dtdev.firmwareRevision,dtdev.serialNumber);
-			break;
-		}
-	}
+        case CONN_CONNECTED:
+        {
+            NSLog(@"PPad connected!\nSDK version: %d.%d\nHardware revision: %@\nFirmware revision: %@\nSerial number: %@", dtdev.sdkVersion/100,dtdev.sdkVersion%100,dtdev.hardwareRevision,dtdev.firmwareRevision,dtdev.serialNumber);
+            break;
+        }
+    }
 
     NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.connectionChanged(%d);", state];
     if ([self.webView isKindOfClass:[UIWebView class]]) {
