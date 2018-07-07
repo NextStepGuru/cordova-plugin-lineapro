@@ -135,18 +135,15 @@
 
     if(card && [card objectForKey:@"accountNumber"]!=nil && [[card objectForKey:@"expirationYear"] intValue]!=0)
     {
-        NSLog(@"magneticCardData: Track1: %@, Track2: %@, Track3: %@, Card: %@", track1, track2, track3, card);
-
-        NSString* cardName = [NSString stringWithFormat:@"%@ %@",[card valueForKey:@"firstName"],[card valueForKey:@"lastName"]];
-        NSString* cardNumber = [card valueForKey:@"accountNumber"];
-        NSString* cardExpDate = [NSString stringWithFormat:@"%@/%@",[card valueForKey:@"expirationMonth"],[card valueForKey:@"expirationYear"]];
-
         int sound[]={2730,150,0,30,2730,150};
         [dtdev playSound:100 beepData:sound length:sizeof(sound) error:nil];
 
-        NSArray* args = [NSArray arrayWithObjects:cardName, cardNumber, cardExpDate, nil];
-        NSString* string = [args componentsJoinedByString:@","];
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:card options:0 error:&err];
+        NSString * string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSString* retStr = [NSString stringWithFormat:@"LineaProCDV.onMagneticCardData('%@')",string];
+
+        NSLog(@"magneticCardData: %@", retStr);
 
         if ([self.webView isKindOfClass:[UIWebView class]]) {
             [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
