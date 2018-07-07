@@ -107,7 +107,7 @@
 }
 -(void) setKioskMode:(CDVInvokedUrlCommand*)command
 {
-    bool isKioskMode = (int)command.arguments[0] == 1 ? true : false;
+    bool isKioskMode = (int)command.arguments[0]? true : false;
     NSError* err;
     [dtdev setKioskMode:isKioskMode error:&err];
     NSLog(@"setKioskMode: %d, %@, %@", (int)isKioskMode, command.arguments[0], err);
@@ -125,7 +125,7 @@
 }
 -(void) setCharging:(CDVInvokedUrlCommand*)command
 {
-    bool isCharging = (int)command.arguments[0] == 1 ? true : false;
+    bool isCharging = (int)command.arguments[0]? true : false;
     NSError* err;
     [dtdev setCharging:isCharging error:&err];
     NSLog(@"setCharging: %d, %@, %@", (int)isCharging, command.arguments[0], err);
@@ -143,7 +143,7 @@
 }
 -(void) setPassThroughSync:(CDVInvokedUrlCommand*)command
 {
-    bool isPassThroughSync = (int)command.arguments[0] == 1 ? true : false;
+    bool isPassThroughSync = (int)command.arguments[0]? true : false;
     NSError* err;
     [dtdev setPassThroughSync:isPassThroughSync error:&err];
     NSLog(@"isPassThroughSync: %d, %@, %@", (int)isPassThroughSync, command.arguments[0], err);
