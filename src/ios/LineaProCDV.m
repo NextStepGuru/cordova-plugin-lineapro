@@ -249,38 +249,9 @@
 }
 
 - (void) barcodeNSData: (NSData *) barcode type:(int) type {
-    NSLog(@"barcodeNSData: barcode - %@, type - %@", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], [dtdev barcodeType2Text:type]);
-    NSArray *codesArr = [[[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:
-                        [NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
-    NSString* substrDateBirth = @"DBB";
-    NSString* dateBirth = [LineaProCDV getPDF417ValueByCode:codesArr code: substrDateBirth];
-    NSString* substrName = @"DAC";
-    NSString* name = [LineaProCDV getPDF417ValueByCode:codesArr code: substrName];
-    NSString* substrLastName = @"DCS";
-    NSString* lastName = [LineaProCDV getPDF417ValueByCode:codesArr code: substrLastName];
-    NSString* substrEye = @"DAY";
-    NSString* eye = [LineaProCDV getPDF417ValueByCode:codesArr code: substrEye];
-    NSString* substrState = @"DAJ";
-    NSString* state = [LineaProCDV getPDF417ValueByCode:codesArr code: substrState];
-    NSString* substrCity = @"DAI";
-    NSString* city = [LineaProCDV getPDF417ValueByCode:codesArr code: substrCity];
-    NSString* substrHeight = @"DAU";
-    NSString* height = [LineaProCDV getPDF417ValueByCode:codesArr code: substrHeight];
-    NSString* substrWeight = @"DAW";
-    NSString* weight = [LineaProCDV getPDF417ValueByCode:codesArr code: substrWeight];
-    NSString* substrGender = @"DBC";
-    NSString* gender = [LineaProCDV getPDF417ValueByCode:codesArr code: substrGender];
-    NSString* substrHair = @"DAZ";
-    NSString* hair = [LineaProCDV getPDF417ValueByCode:codesArr code: substrHair];
-    NSString* substrExpires = @"DBA";
-    NSString* expires = [LineaProCDV getPDF417ValueByCode:codesArr code: substrExpires];
-    NSString* substrLicense = @"DAQ";
-    NSString* license = [LineaProCDV getPDF417ValueByCode:codesArr code: substrLicense];
-    NSLog(@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", dateBirth, name, lastName, eye, state, city, height, weight, gender, hair, expires, license);
+    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('{\"barcode\": \"%@\", \"type\": \"%@\"}');", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], [dtdev barcodeType2Text:type]];
 
-    NSString* rawCodesArrJSString = [LineaProCDV generateStringForArrayEvaluationInJS:codesArr];
-    //LineaProCDV.onBarcodeData(scanId, dob, state, city, expires, gender, height, weight, hair, eye)
-    NSString* retStr = [ NSString stringWithFormat:@"var rawCodesArr = %@; LineaProCDV.onBarcodeData(rawCodesArr, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", rawCodesArrJSString, license, dateBirth, state, city, expires, gender, height, weight, hair, eye, name, lastName];
+    NSLog(@"barcodeNSData: %@", retStr);
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
