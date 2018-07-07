@@ -112,7 +112,9 @@
 }
 -(void) setCharging:(bool)isCharging
 {
-    [dtdev setCharging:isCharging error:nil];
+    NSError* err;
+    [dtdev setCharging:TRUE error:&err];
+    NSLog(@"setCharging: %@, %@", command.arguments[0], err);
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command

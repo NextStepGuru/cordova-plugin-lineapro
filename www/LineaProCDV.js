@@ -68,7 +68,7 @@ LineaProCDV.prototype.getData = function(dataType, callbackFunction = null) {
     setUSBChargeCurrent
  */
 LineaProCDV.prototype.setData = function(dataType, dataValue) {
-  exec(null, null, "LineaProCDV", 'set' + dataType, dataValue);
+  exec(null, null, "LineaProCDV", 'set' + dataType, [dataValue]);
 };
 
 module.exports = new LineaProCDV();
