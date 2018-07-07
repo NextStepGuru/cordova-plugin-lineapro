@@ -55,9 +55,9 @@ LineaProCDV.prototype.onBarcodeData = function(jsonStringData) {
     getSupportedFeature
     getTimeRemainingToPowerOff
  */
-LineaProCDV.prototype.getData = function (dataType, callbackFunction = null) {
+LineaProCDV.prototype.getData = function(dataType, callbackFunction = null) {
   console.log('getData', dataType)
-  exec(callbackFunction, function () { console.log('error', dataType, arguments); }, "LineaProCDV", 'get' + dataType, []);
+  exec(callbackFunction, callbackFunction, "LineaProCDV", dataType, []);
 };
 
 /*
@@ -68,8 +68,8 @@ LineaProCDV.prototype.getData = function (dataType, callbackFunction = null) {
     setPassThroughSync
     setUSBChargeCurrent
  */
-LineaProCDV.prototype.setData = function (dataType, dataArguments, callbackFunction = null) {
-  exec(callbackFunction, function () { console.log('error', dataType, arguments); }, "LineaProCDV", 'set' + dataType, dataArguments);
+LineaProCDV.prototype.setData = function(dataType, dataArguments, callbackFunction = null) {
+  exec(callbackFunction, callbackFunction, "LineaProCDV", dataType, dataArguments);
 };
 
 module.exports = new LineaProCDV();
