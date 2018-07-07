@@ -107,7 +107,7 @@
 }
 -(void) setKioskMode:(CDVInvokedUrlCommand*)command
 {
-    bool isKioskMode = command.arguments[0] ? true : false;
+    bool isKioskMode = (int)command.arguments[0] == 1 ? true : false;
     NSError* err;
     [dtdev setKioskMode:isKioskMode error:&err];
     NSLog(@"setKioskMode: %d, %@", (int)isKioskMode, err);
@@ -125,7 +125,7 @@
 }
 -(void) setCharging:(CDVInvokedUrlCommand*)command
 {
-    bool isCharging = command.arguments[0] ? true : false;
+    bool isCharging = (int)command.arguments[0] == 1 ? true : false;
     NSError* err;
     [dtdev setCharging:isCharging error:&err];
     NSLog(@"setCharging: %d, %@", (int)isCharging, err);
