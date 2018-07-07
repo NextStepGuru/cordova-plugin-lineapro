@@ -52,68 +52,57 @@
 
 -(void) getAutoOffWhenIdle:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getAutoOffWhenIdle('{}');", command, [dtdev getAutoOffWhenIdle]];
-    NSLOG(@"getAutoOffWhenIdle: %@", retStr)
+    NSLOG(@"getAutoOffWhenIdle: %@", command)
 }
 
 -(void) getBatteryCapacity:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getBatteryCapacity('{}');", command, [dtdev getBatteryCapacity]];
-    NSLOG(@"getBatteryCapacity: %@", retStr)
+    NSLOG(@"getBatteryCapacity: %@", command)
 }
 
 -(void) getBatteryInfo:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getBatteryInfo('{}');", command, [dtdev getBatteryInfo]];
-    NSLOG(@"getBatteryInfo: %@", retStr)
+    NSLOG(@"getBatteryInfo: %@", command)
 }
 
 -(void) getConnectedDeviceBatteryInfo:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getConnectedDeviceBatteryInfo('{}');", command, [dtdev getConnectedDeviceBatteryInfo]];
-    NSLOG(@"getConnectedDeviceBatteryInfo: %@", retStr)
+    NSLOG(@"getConnectedDeviceBatteryInfo: %@", command)
 }
 
 -(void) getConnectedDeviceInfo:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getConnectedDeviceInfo('{}');", command, [dtdev getConnectedDeviceInfo]];
-    NSLOG(@"getConnectedDeviceInfo: %@", retStr)
+    NSLOG(@"getConnectedDeviceInfo: %@", command)
 }
 
 -(void) getKioskMode:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getKioskMode('{}');", command, [dtdev getKioskMode]];
-    NSLOG(@"getKioskMode: %@", retStr)
+    NSLOG(@"getKioskMode: %@", command)
 }
 
 -(void) getCharging:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getCharging('{}');", command, [dtdev getCharging]];
-    NSLOG(@"getCharging: %@", retStr)
+    NSLOG(@"getCharging: %@", command)
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getPassThroughSync('{}');", command, [dtdev getPassThroughSync]];
-    NSLOG(@"getPassThroughSync: %@", retStr)
+    NSLOG(@"getPassThroughSync: %@", command)
 }
 
 -(void) getUSBChargeCurrent:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getUSBChargeCurrent('{}');", command, [dtdev getUSBChargeCurrent]];
-    NSLOG(@"getUSBChargeCurrent: %@", retStr)
+    NSLOG(@"getUSBChargeCurrent: %@", command)
 }
 
 -(void) getSupportedFeature:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getSupportedFeature('{}');", command, [dtdev getSupportedFeature]];
-    NSLOG(@"getSupportedFeature: %@", retStr)
+    NSLOG(@"getSupportedFeature: %@", command)
 }
 
 -(void) getTimeRemainingToPowerOff:(CDVInvokedUrlCommand*)command
 {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.getTimeRemainingToPowerOff('{}');", command, [dtdev getTimeRemainingToPowerOff]];
-    NSLOG(@"getTimeRemainingToPowerOff: %@", retStr)
+    NSLOG(@"getTimeRemainingToPowerOff: %@", command)
 }
 
 
