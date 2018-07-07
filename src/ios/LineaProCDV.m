@@ -110,7 +110,7 @@
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
--(void) setCharging:(bool)isCharging
+-(void) setCharging:(CDVInvokedUrlCommand*)command
 {
     NSError* err;
     [dtdev setCharging:TRUE error:&err];
