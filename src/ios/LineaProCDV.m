@@ -110,7 +110,7 @@
     bool isKioskMode = (int)command.arguments[0] == 1 ? true : false;
     NSError* err;
     [dtdev setKioskMode:isKioskMode error:&err];
-    NSLog(@"setKioskMode: %d, %@", (int)isKioskMode, err);
+    NSLog(@"setKioskMode: %d, %@, %@", (int)isKioskMode, command.arguments[0], err);
 }
 
 -(void) getCharging:(CDVInvokedUrlCommand*)command
@@ -128,12 +128,25 @@
     bool isCharging = (int)command.arguments[0] == 1 ? true : false;
     NSError* err;
     [dtdev setCharging:isCharging error:&err];
-    NSLog(@"setCharging: %d, %@", (int)isCharging, err);
+    NSLog(@"setCharging: %d, %@, %@", (int)isCharging, command.arguments[0], err);
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getPassThroughSync: %@", command);
+    bool isPassThroughSync = false;
+    [dtdev getPassThroughSync:&isPassThroughSync error:nil];
+    NSLog(@"getPassThroughSync: %@, %d", command.callbackId, (int)isPassThroughSync);
+    NSString* retStr = [NSString stringWithFormat:@"{\"isPassThroughSync\": \"%d\"}", (int)isPassThroughSync];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+-(void) setPassThroughSync:(CDVInvokedUrlCommand*)command
+{
+    bool isPassThroughSync = (int)command.arguments[0] == 1 ? true : false;
+    NSError* err;
+    [dtdev setPassThroughSync:isPassThroughSync error:&err];
+    NSLog(@"isPassThroughSync: %d, %@, %@", (int)isPassThroughSync, command.arguments[0], err);
 }
 
 -(void) getUSBChargeCurrent:(CDVInvokedUrlCommand*)command
