@@ -52,57 +52,57 @@
 
 -(void) getAutoOffWhenIdle:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getAutoOffWhenIdle: %@", command)
+    NSLog(@"getAutoOffWhenIdle: %@", command);
 }
 
 -(void) getBatteryCapacity:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getBatteryCapacity: %@", command)
+    NSLog(@"getBatteryCapacity: %@", command);
 }
 
 -(void) getBatteryInfo:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getBatteryInfo: %@", command)
+    NSLog(@"getBatteryInfo: %@", command);
 }
 
 -(void) getConnectedDeviceBatteryInfo:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getConnectedDeviceBatteryInfo: %@", command)
+    NSLog(@"getConnectedDeviceBatteryInfo: %@", command);
 }
 
 -(void) getConnectedDeviceInfo:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getConnectedDeviceInfo: %@", command)
+    NSLog(@"getConnectedDeviceInfo: %@", command);
 }
 
 -(void) getKioskMode:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getKioskMode: %@", command)
+    NSLog(@"getKioskMode: %@", command);
 }
 
 -(void) getCharging:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getCharging: %@", command)
+    NSLog(@"getCharging: %@", command);
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getPassThroughSync: %@", command)
+    NSLog(@"getPassThroughSync: %@", command);
 }
 
 -(void) getUSBChargeCurrent:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getUSBChargeCurrent: %@", command)
+    NSLog(@"getUSBChargeCurrent: %@", command);
 }
 
 -(void) getSupportedFeature:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getSupportedFeature: %@", command)
+    NSLog(@"getSupportedFeature: %@", command);
 }
 
 -(void) getTimeRemainingToPowerOff:(CDVInvokedUrlCommand*)command
 {
-    NSLOG(@"getTimeRemainingToPowerOff: %@", command)
+    NSLog(@"getTimeRemainingToPowerOff: %@", command);
 }
 
 

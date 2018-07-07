@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-lineapro",
-  "version": "1.3.12",
+  "version": "1.3.13",
   "description": "LineaPro Cordova Plugin",
   "cordova": {
     "id": "nextstepguru-cordova-plugin-lineapro",
