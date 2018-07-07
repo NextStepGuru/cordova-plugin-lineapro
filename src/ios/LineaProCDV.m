@@ -203,9 +203,9 @@
 }
 
 - (void) barcodeData: (NSString *) barcode type:(int) type {
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('{"barcode": "%@", "type": "%@"}');", barcode, [dtdev barcodeType2Text:type]];
+    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('{\"barcode\": \"%@\", \"type\": \"%@\"}');", barcode, [dtdev barcodeType2Text:type]];
 
-    NSLog(@"returnStr: %@", retStr);
+    NSLog(@"barcodeData: %@", retStr);
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
@@ -214,8 +214,9 @@
 }
 
 - (void) barcodeNSData: (NSData *) barcode isotype:(NSString *) isotype {
-    NSLog(@"barcodeNSData: barcode - %@, type - %@", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], isotype);
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('%@', '%@');", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], isotype];
+    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('{\"barcode\": \"%@\", \"type\": \"%@\"}');", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], isotype];
+
+    NSLog(@"barcodeNSData: %@", retStr);
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
