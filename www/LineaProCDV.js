@@ -33,14 +33,12 @@ LineaProCDV.prototype.connectionChanged = function(state) {
   this.connCallback(state);
 };
 
-LineaProCDV.prototype.onMagneticCardData = function(trackData) {
-  var tracks = trackData.split(',')
-  this.cardDataCallback({track1: tracks[0], track2: tracks[1], track3: tracks[2]});
+LineaProCDV.prototype.onMagneticCardData = function(jsonStringData) {
+  this.cardDataCallback(JSON.parse(jsonStringData));
 };
 
-LineaProCDV.prototype.onBarcodeData = function(barcodeScanArr) {
-  var data = { barcode: barcodeScanArr[0] }
-  this.barcodeCallback(data);
+LineaProCDV.prototype.onBarcodeData = function(jsonStringData) {
+  this.barcodeCallback(JSON.parse(jsonStringData));
 };
 
 module.exports = new LineaProCDV();

@@ -203,8 +203,9 @@
 }
 
 - (void) barcodeData: (NSString *) barcode type:(int) type {
-    NSLog(@"barcodeData: barcode - %@, type - %@", barcode, [dtdev barcodeType2Text:type]);
-    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('%@', '%@');", barcode, [dtdev barcodeType2Text:type]];
+    NSString* retStr = [ NSString stringWithFormat:@"LineaProCDV.onBarcodeData('{"barcode": "%@", "type": "%@"}');", barcode, [dtdev barcodeType2Text:type]];
+
+    NSLog(@"returnStr: %@", retStr);
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:retStr];
     } else if([self.webView isKindOfClass:[WKWebView class]]) {
