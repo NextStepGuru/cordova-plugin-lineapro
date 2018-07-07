@@ -67,8 +67,8 @@ LineaProCDV.prototype.getData = function(dataType, callbackFunction = null) {
     setPassThroughSync
     setUSBChargeCurrent
  */
-LineaProCDV.prototype.setData = function(dataType, dataArguments, callbackFunction = null) {
-  exec(callbackFunction, callbackFunction, "LineaProCDV", 'set' + dataType, dataArguments);
+LineaProCDV.prototype.setData = function(dataType, dataValue) {
+  exec(null, null, "LineaProCDV", 'set' + dataType, dataValue);
 };
 
 module.exports = new LineaProCDV();

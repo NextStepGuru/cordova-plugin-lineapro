@@ -52,17 +52,37 @@
 
 -(void) getAutoOffWhenIdle:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getAutoOffWhenIdle: %@", command);
+    double interval;
+    double whenDisconnected;
+    [dtdev getAutoOffWhenIdle:&interval whenDisconnected:&whenDisconnected error:nil];
+    NSLog(@"getAutoOffWhenIdle: %@, %f, %f", command.callbackId, interval, whenDisconnected);
+    NSString* retStr = [NSString stringWithFormat:@"{\"interval\": %f, \"whenDisconnected\": %f}", interval, whenDisconnected];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) getBatteryCapacity:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getBatteryCapacity: %@", command);
+    int percent;
+    float voltage;
+
+    [dtdev getBatteryCapacity:&percent voltage:&voltage error:nil];
+    NSLog(@"getBatteryCapacity: %@, %d, %f", command.callbackId, percent, voltage);
+    NSString* retStr = [NSString stringWithFormat:@"{\"percent\": %d, \"voltage\": %f}", percent, voltage];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) getBatteryInfo:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getBatteryInfo: %@", command);
+    DTBatteryInfo* data = [dtdev getBatteryInfo:nil];
+    NSLog(@"getBatteryInfo: %@, %@", command.callbackId, data);
+    NSString* retStr = [NSString stringWithFormat:@"{\"batteryInfo\": \"%@\"}", data];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) getConnectedDeviceBatteryInfo:(CDVInvokedUrlCommand*)command
@@ -82,7 +102,17 @@
 
 -(void) getCharging:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"getCharging: %@", command);
+    bool isCharging = false;
+    [dtdev getCharging:&isCharging error:nil];
+    NSLog(@"getCharging: %@, %d", command.callbackId, (int)isCharging);
+    NSString* retStr = [NSString stringWithFormat:@"{\"isChargingEnabled\": \"%d\"}", (int)isCharging];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:retStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+-(void) setCharging:(bool)isCharging
+{
+    [dtdev setCharging:isCharging error:nil];
 }
 
 -(void) getPassThroughSync:(CDVInvokedUrlCommand*)command
