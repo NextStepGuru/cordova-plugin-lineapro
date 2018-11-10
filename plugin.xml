@@ -35,6 +35,10 @@
         <framework src="AudioToolbox.framework" />
         <framework src="MediaPlayer.framework" />
 
+        <config-file target="*-Info.plist" parent="NSBluetoothPeripheralUsageDescription">
+            <string>This app uses bluetooth to connect to IPC scanner and printer devices.
+            </string>
+        </config-file>
 
         <config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
           <array>
