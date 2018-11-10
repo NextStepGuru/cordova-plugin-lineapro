@@ -1,10 +1,10 @@
-var argscheck = require('cordova/argscheck'),
-  channel = require('cordova/channel'),
-  utils = require('cordova/utils'),
-  exec = require('cordova/exec'),
-  cordova = require('cordova');
-
- function LineaProCDV() {
+var argscheck = require('cordova/argscheck');
+var channel = require('cordova/channel');
+var utils = require('cordova/utils');
+var exec = require('cordova/exec');
+var cordova = require('cordova');
+console.log('linea start')
+function LineaProCDV() {
   this.results = [];
   this.connCallback = null;
   this.errorCallback = null;
@@ -13,6 +13,7 @@ var argscheck = require('cordova/argscheck'),
   this.barcodeCallback = null;
 }
 
+console.log('linea 2')
 LineaProCDV.prototype.initDT = function(connectionCallback, cardCallback, barcCallback, cancelCallback, errorCallback) {
   this.results = [];
   this.connCallback = connectionCallback;
@@ -70,5 +71,7 @@ LineaProCDV.prototype.getData = function(dataType, callbackFunction = null) {
 LineaProCDV.prototype.setData = function(dataType, dataValue) {
   exec(null, null, "LineaProCDV", 'set' + dataType, [dataValue]);
 };
+console.log('linea 3')
 
 module.exports = new LineaProCDV();
+console.log('linea 4')
